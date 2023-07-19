@@ -23,7 +23,6 @@ import {
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { AlertModal } from "@/components/modals/alert-modal";
-import { ApiAlert } from "@/components/ui/api-alert";
 import { useOrigin } from "@/hooks/use-origin";
 import ImageUpload from "@/components/ui/image-upload";
 
@@ -41,7 +40,6 @@ interface BillboardFormProps {
 const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
   const params = useParams();
   const router = useRouter();
-  const origin = useOrigin();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const title = initialData ? "Edit" : "Create billboard";
@@ -68,7 +66,7 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
       }
       router.refresh();
       toast.success(toastMessage);
-      router.push(`/api/${params.storeId}/billboards`);
+      router.push(`/${params.storeId}/billboards`);
     } catch (error) {
       toast.error("Something went wrong.");
     } finally {
@@ -164,22 +162,6 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
           </Button>
         </form>
       </Form>
-      <Separator></Separator>
-      <ApiAlert
-        title="NEXT_PUBLIC_API_URL"
-        description={`${origin}/api/${params.storeId}/billboards/${params.billboardId}`}
-        variant="public"
-      ></ApiAlert>
-      <ApiAlert
-        title="NEXT_PUBLIC_API_URL"
-        description={`${origin}/api/${params.storeId}/billboards`}
-        variant="public"
-      ></ApiAlert>
-      <ApiAlert
-        title="NEXT_PUBLIC_API_URL"
-        description={`${origin}/api/${params.storeId}/billboards/${params.billboardId}`}
-        variant="public"
-      ></ApiAlert>
     </>
   );
 };
