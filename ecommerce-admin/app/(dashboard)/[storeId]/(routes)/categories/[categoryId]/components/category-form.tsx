@@ -178,7 +178,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
                   <FormMessage></FormMessage>
                 </FormItem>
               )}
-            ></FormField>
+            />
           </div>
           <Button disabled={loading} className="ml-auto" type="submit">
             {action}
